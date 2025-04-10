@@ -1,16 +1,23 @@
-from utilities import Observer
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent.parent))
+# todo: fix the imports
+
+from src.utilities import Observable
 from entity import Entity
 
-class EntityManager(Observer):
-    def __init__(self):
-        super().__init__()
-        self.entities: dict[str, Entity] = {}
+class EntityManager:
+    def __init__(self, entity_manager_name):
+        self.entity_manager_name = entity_manager_name
+        self.entities: [Entity] = []
+        self.created_entity_observer = Observable()
+        self.deleted_entity_observer = Observable()
 
-    def get_entity(self, id: str):
-        return self.entities.get(id)
+    def create_entity(self, entity: Entity):
+        self.created_entity_observer.value(entity)
+        self.entities.append(entity)
 
-    def create_entity(self, id: str, entity: Entity):
-        self.entities[id] = entity
-
-    def remove_entity(self, id):
-        return self.entities.pop(id)
+    def remove_entity(self, entity : Entity):
+        if entity in self.entities:
+            self.deleted_entity_observer.value(entity)
+            return self.entities.remove(entity)

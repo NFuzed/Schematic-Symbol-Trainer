@@ -1,6 +1,6 @@
 from unittest import TestCase
 from unittest.mock import Mock
-from src.utilities.observer import Observer  # Assuming the class is in observer.py
+from src.utilities.observer import Observer
 
 class TestObserver(TestCase):
     def setUp(self):
