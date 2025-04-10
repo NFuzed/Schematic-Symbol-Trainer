@@ -8,7 +8,8 @@ class EntityManager:
         self.created_entity_observer = Observable()
         self.deleted_entity_observer = Observable()
 
-    def create_entity(self, entity: Entity):
+    def create_entity(self, image):
+        entity = Entity(image)
         self.created_entity_observer.notify(entity)
         self.entities.append(entity)
 
