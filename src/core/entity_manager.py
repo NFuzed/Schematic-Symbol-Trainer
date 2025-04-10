@@ -1,10 +1,5 @@
-import sys
-from pathlib import Path
-sys.path.append(str(Path(__file__).parent.parent.parent))
-# todo: fix the imports
-
-from src.utilities import Observable
-from entity import Entity
+from ..utilities import Observable
+from .entity import Entity
 
 class EntityManager:
     def __init__(self, entity_manager_name):

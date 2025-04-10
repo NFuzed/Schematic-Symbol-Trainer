@@ -1,9 +1,5 @@
-import sys
-from pathlib import Path
-sys.path.append(str(Path(__file__).parent.parent.parent))
-
-from entity_manager import EntityManager
-from src.utilities.observable import Observable
+from .entity_manager import EntityManager
+from ..utilities.observable import Observable
 
 class Database:
     def __init__(self):
