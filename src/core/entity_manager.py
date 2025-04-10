@@ -9,10 +9,10 @@ class EntityManager:
         self.deleted_entity_observer = Observable()
 
     def create_entity(self, entity: Entity):
-        self.created_entity_observer.value(entity)
+        self.created_entity_observer.notify(entity)
         self.entities.append(entity)
 
     def remove_entity(self, entity : Entity):
         if entity in self.entities:
-            self.deleted_entity_observer.value(entity)
+            self.deleted_entity_observer.notify(entity)
             return self.entities.remove(entity)
