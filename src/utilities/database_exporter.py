@@ -12,7 +12,8 @@ def export_database(database, export_path):
         entities = [entity.image for entity in manager.entities]
         data.append({
             "name": manager.entity_manager_name,
-            "images": entities
+            "images": entities,
+            "type": "ENTITY"
         })
 
     # Write to the given path

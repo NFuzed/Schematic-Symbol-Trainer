@@ -10,8 +10,12 @@ def import_database(database, import_path):
         saved_data = pickle.load(f)
 
     for group in saved_data:
-        manager = database.create_entity_manager(group["name"])
-        for img in group["images"]:
-            manager.create_entity(img)
+        if group["type" == "ENTITY"]:
+            manager = database.create_entity_manager(group["name"])
+            for img in group["images"]:
+                manager.create_entity(img)
+
+        if group["type"] == "DIAGRAM":
+            raise NotImplementedError
 
     print("Database imported successfully.")
