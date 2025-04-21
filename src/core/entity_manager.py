@@ -10,10 +10,12 @@ class EntityManager:
 
     def create_entity(self, image):
         entity = Entity(image)
-        self.created_entity_observer.notify(entity)
         self.entities.append(entity)
+        self.created_entity_observer.notify(entity)
+        return entity
 
     def remove_entity(self, entity : Entity):
         if entity in self.entities:
+            result = self.entities.remove(entity)
             self.deleted_entity_observer.notify(entity)
-            return self.entities.remove(entity)
+            return result
