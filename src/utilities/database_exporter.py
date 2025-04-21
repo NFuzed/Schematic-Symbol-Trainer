@@ -16,6 +16,12 @@ def export_database(database, export_path):
             "type": "ENTITY"
         })
 
+    for diagram in database.diagrams.diagrams_file_paths:
+        data.append({
+            "diagram": diagram,
+            "type": "DIAGRAM"
+        })
+
     # Write to the given path
     with open(export_path, "wb") as f:
         pickle.dump(data, f)

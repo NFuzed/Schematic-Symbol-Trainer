@@ -26,4 +26,6 @@ class Database:
     def clear_database(self):
         for entity_manager in self.entity_managers.copy():
             self.delete_entity_manager(entity_manager)
+
+        self.diagrams.clear_diagrams()
         return True

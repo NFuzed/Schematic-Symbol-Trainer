@@ -17,3 +17,7 @@ class DiagramManager:
             result = self.diagrams_file_paths.remove(diagram_file_path)
             self.deleted_diagram_observer.notify(diagram_file_path)
             return result
+
+    def clear_diagrams(self):
+        for diagram_file_path in self.diagrams_file_paths.copy():
+            self.remove_diagram(diagram_file_path)
