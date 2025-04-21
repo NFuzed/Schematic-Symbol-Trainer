@@ -1,2 +1,1 @@
-from . diagram_processor import DiagramProcessor
-from . results_displayer import ResultsDisplayer
+from . symbol_detector import SymbolDetector, SyntheticSymbolDataset
