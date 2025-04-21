@@ -20,3 +20,8 @@ class Database:
         if entity_manager in self.entity_managers:
             self.destroyed_entity_manager_observer.notify(entity_manager)
             self.entity_managers.remove(entity_manager)
+
+    def clear_database(self):
+        for entity_manager in self.entity_managers:
+            self.delete_entity_manager(entity_manager)
+        return True

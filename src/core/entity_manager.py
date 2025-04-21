@@ -1,4 +1,4 @@
-from ..utilities import Observable
+from ..utilities.observable import Observable
 from .entity import Entity
 
 class EntityManager:

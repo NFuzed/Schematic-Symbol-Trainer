@@ -1,1 +1,1 @@
-from . symbol_detector import SymbolDetector, SyntheticSymbolDataset
+from . symbol_detector import SymbolDetector, MultiClassSymbolDataset
