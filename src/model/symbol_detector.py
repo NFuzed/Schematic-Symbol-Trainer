@@ -16,6 +16,8 @@ import cv2
 from src.core.database import Database
 from src.core.entity_manager import EntityManager
 from src.utilities.model_results_data_exporter import export_detections_as_csv_and_image
+from src.utilities.observable import Observable
+
 
 class SymbolDetector:
     def __init__(self, model_dir="models"):
@@ -23,6 +25,7 @@ class SymbolDetector:
         os.makedirs(model_dir, exist_ok=True)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.transform = T.Compose([T.ToTensor()])
+        self.update_logger_observer = Observable()
         self.model = None
 
     def _create_model(self, num_classes):
@@ -54,7 +57,7 @@ class SymbolDetector:
                 optimizer.step()
 
             lr_scheduler.step()
-            print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {losses.item():.4f}")
+            self.update_logger_observer.notify(f"Epoch [{epoch+1}/{num_epochs}], Loss: {losses.item():.4f}")
 
         torch.save(self.model.state_dict(), os.path.join(self.model_dir, "symbol_detector.pth"))
 
@@ -93,8 +96,6 @@ class SymbolDetector:
                 })
 
         temp_scores.sort(reverse=True)
-        for i in range(min(10, len(temp_scores))):
-            print(temp_scores[i])
 
         if export_folder is not None:
             export_detections_as_csv_and_image(diagram_path, export_folder, detections)

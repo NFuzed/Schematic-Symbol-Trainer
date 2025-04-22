@@ -18,4 +18,4 @@ def import_database(database, import_path):
         elif group["type"] == "DIAGRAM":
             database.diagrams.add_diagram(group["diagram"])
 
-    print("Database imported successfully.")
+    return "Database imported successfully."

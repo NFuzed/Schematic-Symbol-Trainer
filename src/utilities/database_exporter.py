@@ -26,4 +26,4 @@ def export_database(database, export_path):
     with open(export_path, "wb") as f:
         pickle.dump(data, f)
 
-    print(f"Database exported to {export_path}")
+    return f"Database exported to {export_path}"
