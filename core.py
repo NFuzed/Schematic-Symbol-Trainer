@@ -1,12 +1,13 @@
 from core import *
 from src.model import *
-from src.core import Database
+from src.core.database import Database
 from src.model import *
 from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import cv2
 
+from src.model.symbol_detector import SymbolDetector
 
 class Core:
     def __init__(self):
@@ -14,9 +15,6 @@ class Core:
         self.symbol_detector = SymbolDetector()
 
     def display_results(self, image_path):
-        entity_managers = sorted(self.database.get_entity_managers(), key=lambda m: m.entity_manager_name)
-        dataset = MultiClassSymbolDataset(entity_managers)
-        self.symbol_detector.train(dataset, num_classes=len(entity_managers) + 1)
         detections = self.symbol_detector.detect(image_path)
 
         label_to_name = {i + 1: mgr.entity_manager_name for i, mgr in enumerate(entity_managers)}
