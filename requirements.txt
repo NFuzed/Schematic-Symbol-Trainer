@@ -1,0 +1,14 @@
+# PyTorch first, from the CUDA index if you have an NVIDIA GPU, e.g.:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+torch>=2.4
+torchvision>=0.19
+ultralytics>=8.3
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+pydantic>=2.7
+pillow>=10.4
+
+# Tests
+pytest>=8
+httpx>=0.27

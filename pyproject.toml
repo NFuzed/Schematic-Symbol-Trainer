@@ -1,0 +1,10 @@
+[project]
+name = "schematic-symbol-trainer"
+version = "0.1.0"
+description = "Python back end for the Schematic Symbol Trainer"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: trains a real YOLO model (downloads weights; minutes on CPU)"]
+addopts = "-m 'not slow'"
