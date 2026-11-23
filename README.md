@@ -59,6 +59,10 @@ pip install -r requirements.txt
 uvicorn app.main:app --port 8000
 ```
 
+Run it from the repo root, since `data/` is created relative to the working directory. `python -m app --port 8000`
+does the same and also works under PyCharm's debugger, whose patched `asyncio.run` rejects the arguments uvicorn's own
+launcher passes.
+
 The first training run downloads the pretrained base weights (a few MB to ~40 MB each) into `data/weights/`.
 
 Then start the front end (`npm run dev` in the TypeScript repo) and open http://localhost:5173. Vite proxies `/api/*` to
